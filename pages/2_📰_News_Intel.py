@@ -1,4 +1,21 @@
 
+import nltk
+
+# --- NLTK DOWNLOAD FIX ---
+# This forces the cloud to download the dictionary every time it runs.
+def download_nltk_data():
+    resources = ['brown', 'punkt', 'punkt_tab', 'wordnet', 'averaged_perceptron_tagger']
+    for resource in resources:
+        try:
+            nltk.data.find(f'tokenizers/{resource}')
+        except LookupError:
+            try:
+                nltk.data.find(f'corpora/{resource}')
+            except LookupError:
+                nltk.download(resource)
+
+download_nltk_data()
+# -------------------------
 import streamlit as st
 import yfinance as yf
 from textblob import TextBlob
@@ -202,3 +219,4 @@ if user_ticker:
 
 else:
     st.info("Please enter a ticker symbol to begin.")
+
