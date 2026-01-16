@@ -1,6 +1,7 @@
 streamlit
-yfinance
 pandas
 numpy
-textblob
 plotly
+yfinance
+textblob
+nltk
